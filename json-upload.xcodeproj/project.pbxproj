@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F6FE7CD259B92FD00455E7E /* usb_conversion_tables.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F6FE7CC259B92FD00455E7E /* usb_conversion_tables.json */; };
 		4FCDF3AE259B922B003FFB4B /* json_uploadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDF3AD259B922B003FFB4B /* json_uploadApp.swift */; };
 		4FCDF3B0259B922B003FFB4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDF3AF259B922B003FFB4B /* ContentView.swift */; };
 		4FCDF3B2259B922E003FFB4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FCDF3B1259B922E003FFB4B /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F6FE7CC259B92FD00455E7E /* usb_conversion_tables.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = usb_conversion_tables.json; sourceTree = "<group>"; };
 		4FCDF3AA259B922B003FFB4B /* json-upload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "json-upload.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FCDF3AD259B922B003FFB4B /* json_uploadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = json_uploadApp.swift; sourceTree = "<group>"; };
 		4FCDF3AF259B922B003FFB4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		4FCDF3AC259B922B003FFB4B /* json-upload */ = {
 			isa = PBXGroup;
 			children = (
+				4F6FE7CC259B92FD00455E7E /* usb_conversion_tables.json */,
 				4FCDF3AD259B922B003FFB4B /* json_uploadApp.swift */,
 				4FCDF3AF259B922B003FFB4B /* ContentView.swift */,
 				4FCDF3B1259B922E003FFB4B /* Assets.xcassets */,
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FCDF3B5259B922E003FFB4B /* Preview Assets.xcassets in Resources */,
+				4F6FE7CD259B92FD00455E7E /* usb_conversion_tables.json in Resources */,
 				4FCDF3B2259B922E003FFB4B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
