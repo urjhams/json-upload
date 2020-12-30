@@ -16,7 +16,7 @@
 		4FCDF3C0259B922E003FFB4B /* json_uploadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDF3BF259B922E003FFB4B /* json_uploadTests.swift */; };
 		4FCDF3CB259B922E003FFB4B /* json_uploadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDF3CA259B922E003FFB4B /* json_uploadUITests.swift */; };
 		4FFFFF84259BC1EE00C98555 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FFFFF83259BC1EE00C98555 /* GoogleService-Info.plist */; };
-		4FFFFF97259C940000C98555 /* uploadScript in Resources */ = {isa = PBXBuildFile; fileRef = 4FFFFF96259C940000C98555 /* uploadScript */; };
+		4FFFFF9C259CADC800C98555 /* uploadScript.js in Resources */ = {isa = PBXBuildFile; fileRef = 4FFFFF9B259CADC800C98555 /* uploadScript.js */; };
 		A6D5D4F9850556D08DB997B5 /* Pods_json_uploadTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29027D60EB452A28249B7BEE /* Pods_json_uploadTests.framework */; };
 		D37A1FAD773A1AE0938B8685 /* Pods_json_upload_json_uploadUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F3F15F9EBF0A3D93CA42FC8 /* Pods_json_upload_json_uploadUITests.framework */; };
 /* End PBXBuildFile section */
@@ -55,7 +55,7 @@
 		4FCDF3CA259B922E003FFB4B /* json_uploadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = json_uploadUITests.swift; sourceTree = "<group>"; };
 		4FCDF3CC259B922E003FFB4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FFFFF83259BC1EE00C98555 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		4FFFFF96259C940000C98555 /* uploadScript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = uploadScript; sourceTree = "<group>"; };
+		4FFFFF9B259CADC800C98555 /* uploadScript.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = uploadScript.js; sourceTree = "<group>"; };
 		69EB068FA4659C71DA92B8D3 /* Pods-json-upload.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-json-upload.release.xcconfig"; path = "Target Support Files/Pods-json-upload/Pods-json-upload.release.xcconfig"; sourceTree = "<group>"; };
 		6F3F15F9EBF0A3D93CA42FC8 /* Pods_json_upload_json_uploadUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_json_upload_json_uploadUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F60983C432585C42DEAE100 /* Pods-json-uploadTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-json-uploadTests.debug.xcconfig"; path = "Target Support Files/Pods-json-uploadTests/Pods-json-uploadTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		4FCDF3AC259B922B003FFB4B /* json-upload */ = {
 			isa = PBXGroup;
 			children = (
-				4FFFFF96259C940000C98555 /* uploadScript */,
+				4FFFFF9B259CADC800C98555 /* uploadScript.js */,
 				4F6FE7CC259B92FD00455E7E /* usb_conversion_tables.json */,
 				4FCDF3AD259B922B003FFB4B /* json_uploadApp.swift */,
 				4FCDF3AF259B922B003FFB4B /* ContentView.swift */,
@@ -287,7 +287,7 @@
 			files = (
 				4FCDF3B5259B922E003FFB4B /* Preview Assets.xcassets in Resources */,
 				4FFFFF84259BC1EE00C98555 /* GoogleService-Info.plist in Resources */,
-				4FFFFF97259C940000C98555 /* uploadScript in Resources */,
+				4FFFFF9C259CADC800C98555 /* uploadScript.js in Resources */,
 				4F6FE7CD259B92FD00455E7E /* usb_conversion_tables.json in Resources */,
 				4FCDF3B2259B922E003FFB4B /* Assets.xcassets in Resources */,
 			);
