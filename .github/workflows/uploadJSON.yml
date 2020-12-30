@@ -52,5 +52,5 @@ jobs:
       - uses: actions/github-script@v3
         with:
           script: |
-            const script = require(`${process.env.GITHUB_REPOSITORY}/json-upload/json-upload/uploadScript.js`)
+            const script = `./json-upload/uploadScript.js`
             script({github, context})
