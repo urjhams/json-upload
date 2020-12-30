@@ -11,7 +11,7 @@
 
  var db = firebase.firestore();
 
- var json = require('./usb_conversion_tables');
+ var json = require('./usb_conversion_tables.json');
 
  json.forEach(function (obj) {
      db.collection("menu").add({
