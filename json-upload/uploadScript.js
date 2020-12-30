@@ -15,13 +15,16 @@ var json = require('./usb_conversion_tables.json');
 
 var jsonString = JSON.stringify(json);
 
-console.log(jsonString);
-
-db.collection("firmware").doc("current_firmware").set({
+db
+.collection("firmware")
+.doc("current_firmware")
+.set({
     json: jsonString,
     time: new Date().getTime()
-}).then(function (docRef) {
+})
+.then(function (docRef) {
     console.log("Document written with ID: ", docRef.id);
-}).catch(function (error) {
+})
+.catch(function (error) {
     console.error("Error adding document: ", error);
 });
