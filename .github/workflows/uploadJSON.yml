@@ -57,6 +57,8 @@ jobs:
           node-version: '12'
           
       - run: npm install
-        
+      
+      - run: npm install firebase
+      
       - name: github script
         run: node ./json-upload/uploadScript.js
