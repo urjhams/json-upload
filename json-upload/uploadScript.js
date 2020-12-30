@@ -40,4 +40,6 @@
 //         });
 // });
 
-console.log("hello");
+function loadJSON() {
+    console.log("hello");
+}
