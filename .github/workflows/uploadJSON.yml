@@ -2,11 +2,11 @@ name: JSON upload Firebase workflow
 
 on:
   push:
-    branches: [ main ]
+#     branches: [ main ]
     paths:
       - '**.js'
   pull_request:
-    branches: [ main ]
+#     branches: [ main ]
     paths: 
       - '**.js'
 jobs:
