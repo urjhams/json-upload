@@ -48,9 +48,12 @@ jobs:
     name: Make a json
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/github-script@v3
+      - name: check out
+        uses: actions/checkout@v2
+        
+      - name: github script
+        uses: actions/github-script@v3
         with:
           script: |
-            const script = require(`${process.env.GITHUB_WORKSPACE}/json-upload/uploadScript.js`)
-            script({github, context})
+            const script = `./json-upload/uploadScript.js`
+            script()
