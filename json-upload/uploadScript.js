@@ -2,18 +2,6 @@
  // Required for side-effects
  require("firebase/firestore");
 
- function loadJSON(filePath) {
-     var xobj = new XMLHttpRequest();
-     xobj.overrideMimeType("application/json");
-     xobj.open('GET', filePath, true);
-     xobj.onreadystatechange = function () {
-         if (xobj.readyState == 4 && xobj.status == "200") {
-             return JSON.parse(xobj.responseText)
-         }
-     };
-     xobj.send(null);
- }
-
  // Initialize Cloud Firestore through Firebase
  firebase.initializeApp({
      apiKey: "AIzaSyDUEhb8jGrhNR53qEA0wB9f1M9IcnhPrXQ",
@@ -23,7 +11,7 @@
 
  var db = firebase.firestore();
 
- var json = loadJSON('usb_conversion_tables.json');
+ var json = require('usb_conversion_tables.json');
 
  json.forEach(function (obj) {
      db.collection("menu").add({
