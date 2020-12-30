@@ -3,12 +3,12 @@ name: JSON upload Firebase workflow
 on:
   push:
     branches: [ main ]
-#     paths: 
-#       - 'json-upload/usb_conversion_tables.json'
+    paths:
+      - 'usb_conversion_tables.json'
   pull_request:
     branches: [ main ]
-#     paths: 
-#       - 'json-upload/usb_conversion_tables.json'
+    paths: 
+      - 'usb_conversion_tables.json'
 jobs:
 #   testing:  #this jobs so far is from the template, just for the test, it will always success cuz we have no unit test
 #     name: Build and Test default scheme using any available iPhone simulator
@@ -48,17 +48,24 @@ jobs:
     name: Make a json
     runs-on: ubuntu-latest
     steps:
+      # check out the repository
       - name: check out
         uses: actions/checkout@v2
         
+      # set the node version
       - name: setup node js
         uses: actions/setup-node@v2
         with:
           node-version: '12'
           
-      - run: npm install
+      # install the node js on environment for the upload script to use
+      - name: install node js
+        run: npm install
       
-      - run: npm install firebase
-            
+      # install firebase library
+      - name: install firebase library for node js
+        run: npm install firebase
+      
+      # run the upload script in the repository
       - name: github script
         run: node ./json-upload/uploadScript.js
