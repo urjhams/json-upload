@@ -13,7 +13,7 @@ var db = firebase.firestore();
 
 var json = require('./usb_conversion_tables.json');
 
-var jsonString = JSON.parse(json);
+var jsonString = JSON.stringify(json);
 
 console.log(jsonString);
 
