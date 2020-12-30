@@ -51,5 +51,12 @@ jobs:
       - name: check out
         uses: actions/checkout@v2
         
+      - name: setup node js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          
+      - run: npm install
+        
       - name: github script
-        run: chmod +x ./json-upload/uploadScript.js
+        run: node ./json-upload/uploadScript.js
