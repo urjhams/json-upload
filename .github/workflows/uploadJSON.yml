@@ -1,13 +1,16 @@
-name: iOS starter workflow
+name: JSON upload Firebase workflow
 
 on:
   push:
     branches: [ main ]
+    paths: 
+      - 'json-upload/json-upload/usb_conversion_tables.json'
   pull_request:
     branches: [ main ]
-
+    paths: 
+      - 'json-upload/json-upload/usb_conversion_tables.json'
 jobs:
-  build:
+  build:  #this jobs so far is from the template, just for the test, it will always success cuz we have no unit test
     name: Build and Test default scheme using any available iPhone simulator
     runs-on: macos-latest
 
@@ -40,3 +43,15 @@ jobs:
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
           xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
+  check-json-job:
+    needs: [build]
+    name: Make a json
+    runs-on: ubuntu-latest
+    steps:
+      - name: uploading JSON to firebase
+      - uses: actions/checkout@v2
+      - uses: actions/github-script@v3
+        with:
+          script: |
+            const script = require(`${process.env.GITHUB_WORKSPACE}/json-upload/json-upload/uploadScript`)
+            script({github, context})
