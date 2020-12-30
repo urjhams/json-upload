@@ -44,16 +44,18 @@ jobs:
     name: Make a json
     runs-on: ubuntu-latest
     steps:
-      - uses: dorny/paths-filter@v2
+      # check out the repository
+      - name: check out
+        uses: actions/checkout@v2
+      
+      # filter to detect different in files
+      - name: filter
+        uses: dorny/paths-filter@v2
         id: filter
         with:
           filters: |
             json:
               - 'usb_conversion_tables.json'
-      # check out the repository
-      - name: check out
-        if: steps.filter.outputs.json == 'true'
-        uses: actions/checkout@v2
         
       # set the node version
       - name: setup node js
