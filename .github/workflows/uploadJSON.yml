@@ -4,11 +4,11 @@ on:
   push:
 #     branches: [ main ]
     paths:
-      - 'usb_conversion_tables.json'
+      - usb_conversion_tables.json
   pull_request:
     paths: 
 #     branches: [ main ]
-      - 'usb_conversion_tables.json'
+      - usb_conversion_tables.json
 jobs:
 #   testing:  #this jobs so far is from the template, just for the test, it will always success cuz we have no unit test
 #     name: Build and Test default scheme using any available iPhone simulator
