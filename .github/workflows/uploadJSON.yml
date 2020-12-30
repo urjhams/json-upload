@@ -4,11 +4,11 @@ on:
   push:
     branches: [ main ]
     paths: 
-      - 'json-upload/json-upload/usb_conversion_tables.json'
+      - '/json-upload/json-upload/usb_conversion_tables.json'
   pull_request:
     branches: [ main ]
     paths: 
-      - 'json-upload/json-upload/usb_conversion_tables.json'
+      - '/json-upload/json-upload/usb_conversion_tables.json'
 jobs:
   build:  #this jobs so far is from the template, just for the test, it will always success cuz we have no unit test
     name: Build and Test default scheme using any available iPhone simulator
@@ -48,7 +48,6 @@ jobs:
     name: Make a json
     runs-on: ubuntu-latest
     steps:
-      - name: uploading JSON to firebase
       - uses: actions/checkout@v2
       - uses: actions/github-script@v3
         with:
