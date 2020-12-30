@@ -17,7 +17,7 @@ var jsonString = JSON.stringify(json);
 
 console.log(jsonString);
 
-db.collection("firmware").add({
+db.collection("firmware").doc("current_firmware").set({
     json: jsonString,
     time: new Date().getTime()
 }).then(function (docRef) {
