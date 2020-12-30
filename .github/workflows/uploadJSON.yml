@@ -55,7 +55,7 @@ jobs:
         with:
           filters: |
             json:
-              - 'usb_conversion_tables.json'
+              - 'json-upload/usb_conversion_tables.json'
         
       # set the node version
       - name: setup node js
