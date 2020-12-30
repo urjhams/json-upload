@@ -17,17 +17,11 @@ var jsonString = JSON.stringify(json);
 
 console.log(jsonString);
 
-// json.forEach(function (obj) {
-//     db.collection("menu").add({
-//         id: obj.id,
-//         name: obj.name,
-//         description: obj.description,
-//         price: obj.price,
-//         type: obj.type
-//     }).then(function (docRef) {
-//         console.log("Document written with ID: ", docRef.id);
-//     })
-//         .catch(function (error) {
-//             console.error("Error adding document: ", error);
-//         });
-// });
+db.collection("firmware").add({
+    json: jsonString,
+    time: new Date().getTime()
+}).then(function (docRef) {
+    console.log("Document written with ID: ", docRef.id);
+}).catch(function (error) {
+    console.error("Error adding document: ", error);
+});
