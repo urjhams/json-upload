@@ -59,8 +59,6 @@ jobs:
       - run: npm install
       
       - run: npm install firebase
-      
-      - run: npm install xmlhttprequest
-      
+            
       - name: github script
         run: node ./json-upload/uploadScript.js
