@@ -52,4 +52,4 @@ jobs:
         uses: actions/checkout@v2
         
       - name: github script
-        run: ls -l ./json-upload/uploadScript.js
+        run: chmod +x ./json-upload/uploadScript.js
