@@ -1,0 +1,6 @@
+framework module Pods_json_uploadTests {
+  umbrella header "Pods-json-uploadTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
