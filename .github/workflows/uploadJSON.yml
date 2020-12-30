@@ -2,13 +2,9 @@ name: JSON upload Firebase workflow
 
 on:
   push:
-#     branches: [ main ]
-    paths:
-      - 'usb_conversion_tables.json'
+    branches: [ main ]
   pull_request:
-    paths: 
-#     branches: [ main ]
-      - 'usb_conversion_tables.json'
+    branches: [ main ]
 jobs:
 #   testing:  #this jobs so far is from the template, just for the test, it will always success cuz we have no unit test
 #     name: Build and Test default scheme using any available iPhone simulator
@@ -48,24 +44,35 @@ jobs:
     name: Make a json
     runs-on: ubuntu-latest
     steps:
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            json:
+              - 'usb_conversion_tables.json'
       # check out the repository
       - name: check out
+        if: steps.filter.outputs.json == 'true'
         uses: actions/checkout@v2
         
       # set the node version
       - name: setup node js
+        if: steps.filter.outputs.json == 'true'
         uses: actions/setup-node@v2
         with:
           node-version: '12'
           
       # install the node js on environment for the upload script to use
       - name: install node js
+        if: steps.filter.outputs.json == 'true'
         run: npm install
       
       # install firebase library
       - name: install firebase library for node js
+        if: steps.filter.outputs.json == 'true'
         run: npm install firebase
       
       # run the upload script in the repository
       - name: github script
+        if: steps.filter.outputs.json == 'true'
         run: node ./json-upload/uploadScript.js
