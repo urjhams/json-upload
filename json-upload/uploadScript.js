@@ -17,7 +17,7 @@ var jsonString = JSON.stringify(json);
 
 db
 .collection("firmware")
-.doc("current_firmware")
+.doc("current")
 .set({
     json: jsonString,
     time: new Date().getTime()
