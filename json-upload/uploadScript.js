@@ -59,7 +59,7 @@ const storage = new Storage({
 
 let bucketName = 'gs://json-upload-12aa7.appspot.com'
 
-let filename = 'test.zip';
+let filename = './test.zip';
 
 // Testing out upload of file
 const uploadFile = async() => {
