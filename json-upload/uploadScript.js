@@ -4,8 +4,6 @@ require("firebase/firestore");
 
 const fs = require('fs');
 
-fs.readFile
-
 //// Initialize Cloud Firestore through Firebase
 //firebase.initializeApp({
 //apiKey: "AIzaSyDUEhb8jGrhNR53qEA0wB9f1M9IcnhPrXQ",
