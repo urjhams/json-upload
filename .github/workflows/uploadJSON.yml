@@ -72,7 +72,10 @@ jobs:
       # install firebase library
       - name: install firebase library for node js
         if: steps.filter.outputs.json == 'true'
-        run: npm install firebase
+        run: npm i @google-cloud/storage
+        #npm install firebase
+          
+      - run: npm i express
       
       # run the upload script in the repository
       - name: github script
