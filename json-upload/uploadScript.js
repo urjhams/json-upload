@@ -1,6 +1,6 @@
 const firebase = require("firebase");
 // Required for side-effects
-require("firebase/firestore");
+require("firebase/storage");
 
 const fs = require('fs');
 
