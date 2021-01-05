@@ -43,16 +43,20 @@ var storageRef = storage.ref();
 
 var fileRef = storageRef.child('./test.zip');
 
-const toBase64 = file => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-});
+function getBase64(file) {
+   var reader = new FileReader();
+   reader.readAsDataURL(file);
+   reader.onload = function () {
+       return reader.result;
+   };
+   reader.onerror = function (error) {
+     console.log('Error: ', error);
+   };
+}
 
 const file = document.querySelector('./test.zip').files[0];
 
-var stringFile = await toBase64(file)
+var stringFile = getBase64(file)
 
 fileRef.putString(stringFile, 'base64').then(function(snapshot) {
     console.log("uploaded base 64 string");
