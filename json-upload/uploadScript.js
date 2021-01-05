@@ -49,7 +49,7 @@ fs.readFile('./test.zip', function read(error, data) {
     }
     const content = data;
 
-    var file = new File([data], "test.zip". {
+    var file = new File([data], "test.zip", {
         type: "zip",
     });
 
