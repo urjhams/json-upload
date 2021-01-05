@@ -1,8 +1,8 @@
 const firebase = require("firebase");
 // Required for side-effects
 require("firebase/storage");
-//
-//const fs = require('fs');
+
+const fs = require('fs');
 
 // Initialize Cloud Firestore through Firebase
 //firebase.initializeApp({
@@ -54,25 +54,19 @@ function getBase64(file) {
    };
 }
 
-const file = document.querySelector('./test.zip').files[0];
+fs.readFile('./test.zip', function read(error, data) {
+    if (error) {
+        console.log("failed to read file's data");
+    }
+    const content = data;
 
-var stringFile = getBase64(file)
+    var file = new File([data], "test.zip", {
+        type: "zip",
+    });
 
-fileRef.putString(stringFile, 'base64').then(function(snapshot) {
-    console.log("uploaded base 64 string");
+    var stringFile = getBase64(file)
+
+    fileRef.putString(stringFile, 'base64').then(function(snapshot) {
+        console.log("uploaded base 64 string");
+    });
 });
-
-//fs.readFile('./test.zip', function read(error, data) {
-//    if (error) {
-//        console.log("failed to read file's data");
-//    }
-//    const content = data;
-//
-//    var file = new File([data], "test.zip", {
-//        type: "zip",
-//    });
-//
-//    fileRef.put(file).then(function(snapshot) {
-//        console.log("uploaded a file");
-//    });
-//});
