@@ -43,30 +43,15 @@ var storageRef = storage.ref();
 
 var fileRef = storageRef.child('./test.zip');
 
-function getBase64(file) {
-   var reader = new FileReader();
-   reader.readAsDataURL(file);
-   reader.onload = function () {
-       return reader.result;
-   };
-   reader.onerror = function (error) {
-     console.log('Error: ', error);
-   };
-}
-
 fs.readFile('./test.zip', function read(error, data) {
     if (error) {
         console.log("failed to read file's data");
     }
     const content = data;
 
-    var file = new File([data], "test.zip", {
-        type: "zip",
-    });
+    var base64 = btoa(content);
 
-    var stringFile = getBase64(file)
-
-    fileRef.putString(stringFile, 'base64').then(function(snapshot) {
+    fileRef.putString(base64, 'base64').then(function(snapshot) {
         console.log("uploaded base 64 string");
     });
 });
