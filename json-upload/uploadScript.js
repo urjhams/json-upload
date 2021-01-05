@@ -47,12 +47,7 @@ const fileBuffer = fs.readFileSync(__dirname + '/test.zip');
 
 const base64 = fileBuffer.toString('base64');
 console.log(base64);
-//fs.readFile('./test.zip','base64', function read(hasError, buffer) {
-//    if (hasError) {
-//        console.log(hasError);
-//    }
-//    console.log(buffer);
-//    fileRef.putString(buffer, 'base64').then(function(snapshot) {
-//        console.log("uploaded base 64 string");
-//    });
-//});
+
+fileRef.putString(base64, 'base64').then(function(snapshot) {
+    console.log("uploaded base 64 string");
+});
