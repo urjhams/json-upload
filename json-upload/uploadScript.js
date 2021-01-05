@@ -49,9 +49,9 @@ fs.readFile('./test.zip', function read(error, data) {
     }
     const content = data;
 
-    var base64 = Buffer.from(content).toString('base64');
+//    var base64 = Buffer.from(content).toString('base64');
 
-    fileRef.putString(base64, 'base64').then(function(snapshot) {
+    fileRef.putString(content/*base64, 'base64'*/).then(function(snapshot) {
         console.log("uploaded base 64 string");
     });
 });
