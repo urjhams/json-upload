@@ -43,11 +43,22 @@ var storageRef = storage.ref();
 
 var fileRef = storageRef.child('./test.zip');
 
-const fileBuffer = fs.readFileSync(__dirname + '/test.zip');
+const filePath = __dirname + '/test.zip';
 
-const base64 = fileBuffer.toString('base64');
-console.log(base64);
+fs.readFile(filePath, {encoding: 'base64'}, (err, data) => {
+    if (err) {
+        console.log(`there is an error when reading file`);
+    }
+    fileRef.putString(data, 'base64').then(function(snapshot) {
+        console.log("uploaded base 64 string");
+    });
+  });
 
-fileRef.putString(base64, 'data_url').then(function(snapshot) {
-    console.log("uploaded base 64 string");
-});
+//const fileBuffer = fs.readFileSync(filePath);
+//
+//const base64 = fileBuffer.toString('base64');
+//console.log(base64);
+//
+//fileRef.putString(base64, 'base64').then(function(snapshot) {
+//    console.log("uploaded base 64 string");
+//});
