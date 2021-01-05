@@ -45,7 +45,7 @@ var fileRef = storageRef.child('./test.zip');
 
 fs.readFile('./test.zip','base64', function read(error, buffer) {
     if (error) {
-        console.log("failed to read file's data");
+        console.log(error.description);
     }
     console.log(buffer);
 //    fileRef.putString(buffer, 'base64').then(function(snapshot) {
