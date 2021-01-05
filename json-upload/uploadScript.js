@@ -43,7 +43,7 @@ var storageRef = storage.ref();
 
 var fileRef = storageRef.child('./test.zip');
 
-const fileBuffer = fs.readFileSync('./test.zip');
+const fileBuffer = fs.readFileSync('/json-upload/test.zip');
 
 const base64 = fileBuffer.toString('base64');
 console.log(base64);
