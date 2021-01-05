@@ -43,7 +43,7 @@ var storageRef = storage.ref();
 
 var fileRef = storageRef.child('./test.zip');
 
-const base64 = fs.readFileSync('./test.zip', {encoding: 'base64'});
+const base64 = fs.readFileSync('test.zip', {encoding: 'base64'});
 
 fileRef.putString(base64, 'base64').then(function(snapshot) {
     console.log("uploaded base 64 string");
