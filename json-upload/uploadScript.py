@@ -5,7 +5,7 @@ import pathlib
 import os
 
 dirname = os.path.dirname(__file__)
-keyFilePath = os.path.join(dirname, './json-upload-301011-2363910393c4.json')
+keyFilePath = os.path.join(dirname, './json-upload-301011-b6e964c17af6.json')
 
 cred = credentials.Certificate(keyFilePath)
 firebase_admin.initialize_app(cred, {
@@ -20,6 +20,6 @@ blob = bucket.blob(fileName)
 
 blob.upload_from_filename(fileName)
 
-blob.make_public()
+#blob.make_public()
 
 print("your file url ", blob.public_url)
