@@ -14,7 +14,7 @@ firebase_admin.initialize_app(cred, {
 
 bucket = storage.bucket()
 
-fileName = os.path.join(dirname, './usb_conversion_tables.json')
+fileName = os.path.join(dirname, './test.zip')
 
 blob = bucket.blob(fileName)
 
