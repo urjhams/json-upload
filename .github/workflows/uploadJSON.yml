@@ -39,10 +39,11 @@ jobs:
 #           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
 #           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
 #           xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
+  
   check-json:
 #     needs: [testing]
     name: Make a json
-    runs-on: ubuntu-latest
+    runs-on: macos-latest #ubuntu-latest
     steps:
       # check out the repository
       - name: check out
@@ -58,30 +59,40 @@ jobs:
               - 'json-upload/usb_conversion_tables.json'
         
       # set the node version
-      - name: setup node js
-        if: steps.filter.outputs.json == 'true'
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12'
+#       - name: setup node js
+#         if: steps.filter.outputs.json == 'true'
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: '12'
           
       # install the node js on environment for the upload script to use
-      - name: install node js
-        if: steps.filter.outputs.json == 'true'
-        run: npm install
+#       - name: install node js
+#         if: steps.filter.outputs.json == 'true'
+#         run: npm install
       
       # install firebase library
-      - name: install firebase library for node js
-        if: steps.filter.outputs.json == 'true'
-        run: npm install firebase
+#       - name: install firebase library for node js
+#         if: steps.filter.outputs.json == 'true'
+#         run: npm install firebase
         #npm i @google-cloud/storage
           
       #- run: npm i express
       # install XMLHttpRequest
-      - name: install XMLHttprequest module
-        if: steps.filter.outputs.json == 'true'
-        run: npm install xmlhttprequest
+#       - name: install XMLHttprequest module
+#         if: steps.filter.outputs.json == 'true'
+#         run: npm install xmlhttprequest
       
       # run the upload script in the repository
-      - name: github script
+#       - name: github script
+#         if: steps.filter.outputs.json == 'true'
+#         run: node ./json-upload/uploadScript.js
+      
+      - name: Setup & run Python script
         if: steps.filter.outputs.json == 'true'
-        run: node ./json-upload/uploadScript.js
+        uses: actions/setup-python@v2
+        with:
+            python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+            architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+      - run: |
+          pip install firebase-admin
+          python ./json-upload/uploadScript.py
