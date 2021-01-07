@@ -14,7 +14,7 @@ firebase_admin.initialize_app(cred, {
 
 bucket = storage.bucket()
 
-fileName = os.path.join(dirname, 'test.zip')
+fileName = 'test.zip'
 
 blob = bucket.blob(fileName)
 
