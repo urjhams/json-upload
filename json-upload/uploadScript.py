@@ -3,7 +3,7 @@ from firebase_admin import credentials
 from firebase_admin import storage
 import pathlib
 
-cred = credentials.Certificate('json-upload-301011-6cd8a2247084.json')
+cred = credentials.Certificate('./json-upload-301011-6cd8a2247084.json')
 firebase_admin.initialize_app(cred, {
     'storageBucket' : 'json-upload-12aa7.appspot.com'
 })
