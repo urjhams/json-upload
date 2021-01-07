@@ -87,12 +87,17 @@ jobs:
 #         if: steps.filter.outputs.json == 'true'
 #         run: node ./json-upload/uploadScript.js
       
-      - name: Setup & run Python script
+      - name: Setup Python and dependencies
         if: steps.filter.outputs.json == 'true'
         uses: actions/setup-python@v2
         with:
             python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
             architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
       - run: |
+          pip install google-cloud-storage
+          pip install firebase
           pip install firebase-admin
-          python ./json-upload/uploadScript.py
+        
+      - name: run upload script
+        if: steps.filter.outputs.json == 'true'
+        run: python ./json-upload/uploadScript.py
