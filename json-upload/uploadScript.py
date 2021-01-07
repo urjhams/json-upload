@@ -5,7 +5,7 @@ import pathlib
 import os
 
 dirname = os.path.dirname(__file__)
-keyFilePath = os.path.join(dirname, './json-upload-301011-6cd8a2247084.json')
+keyFilePath = os.path.join(dirname, './json-upload-301011-86604e9f86ac.json')
 
 cred = credentials.Certificate(keyFilePath)
 firebase_admin.initialize_app(cred, {
