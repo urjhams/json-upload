@@ -76,6 +76,10 @@ jobs:
         #npm i @google-cloud/storage
           
       #- run: npm i express
+      # install XMLHttpRequest
+      - name: install XMLHttprequest module
+        if: steps.filter.outputs.json == 'true'
+        run: npm install xmlhttprequest
       
       # run the upload script in the repository
       - name: github script
