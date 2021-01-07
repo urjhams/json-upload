@@ -43,16 +43,18 @@ var storageRef = storage.ref();
 
 var fileRef = storageRef.child('./test.zip');
 
+// in node js, should not use relative file path (./), use __dirname instead.
 const filePath = __dirname + '/test.zip';
 
-fs.readFile(filePath, {encoding: 'base64'}, (err, data) => {
+fs.readFile(filePath/*, {encoding: 'base64'}*/, (err, data) => {
     if (err) {
         console.log(`there is an error when reading file`);
     }
-    fileRef.putString(data, 'base64').then(function(snapshot) {
+    var base64 = Buffer.from(data).toString('base64')
+    fileRef.putString(base64, 'base64').then(function(snapshot) {
         console.log("uploaded base 64 string");
     });
-  });
+});
 
 //const fileBuffer = fs.readFileSync(filePath);
 //
