@@ -14,12 +14,12 @@ firebase_admin.initialize_app(cred, {
 
 bucket = storage.bucket()
 
-fileName = 'test.zip'
+fileName = os.path.join(dirname, 'test.zip')
 
 blob = bucket.blob(fileName)
 
 blob.upload_from_filename(fileName)
 
-#blob.make_public()
+blob.make_public()
 
 print("your file url ", blob.public_url)
