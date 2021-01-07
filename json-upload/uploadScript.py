@@ -1,11 +1,10 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import storage
-import pathlib
 import os
 
-dirname = os.path.dirname(__file__)
-keyFilePath = os.path.join(dirname, 'json-upload-12aa7-12e10899219f.json')
+dirname = os.path.dirname(os.path.realpath(__file__))
+keyFilePath = dirname + '/json-upload-12aa7-12e10899219f.json'
 
 cred = credentials.Certificate(keyFilePath)
 firebase_admin.initialize_app(cred, {
@@ -14,7 +13,7 @@ firebase_admin.initialize_app(cred, {
 
 bucket = storage.bucket()
 
-fileName = os.path.join(dirname, 'test.zip')
+fileName = dirname + '/test.zip'
 
 blob = bucket.blob(fileName)
 
