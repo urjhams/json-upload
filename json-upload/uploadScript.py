@@ -7,7 +7,7 @@ from uuid import uuid4
 
 # get google cloud's service account key
 dirname = os.path.dirname(os.path.realpath(__file__))
-keyFilePath = dirname + '/json-upload-12aa7-12e10899219f.json'
+keyFilePath = dirname + '/json-upload-12aa7-a9a6c2ceaaab.json'
 
 # apply the bucket domain to the credentials
 cred = credentials.Certificate(keyFilePath)
