@@ -1,13 +1,14 @@
 import firebase_admin
 from firebase_admin import credentials, storage
 import os
+import sys
 
 # Import UUID4 to create token
 from uuid import uuid4
 
 # get google cloud's service account key
 dirname = os.path.dirname(os.path.realpath(__file__))
-keyFilePath = dirname + '/json-upload-12aa7-a9a6c2ceaaab.json'
+keyFilePath = dirname + '/service_account_key.json'
 
 # apply the bucket domain to the credentials
 cred = credentials.Certificate(keyFilePath)
