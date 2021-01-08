@@ -6,9 +6,12 @@ import sys
 # Import UUID4 to create token
 from uuid import uuid4
 
-# get google cloud's service account key
-dirname = os.path.dirname(os.path.realpath(__file__))
-keyFilePath = '/Users/runner/work/_temp/service_account_key.json'
+# base64 decoded key file will be stored in temporary directory
+# https://github.com/marketplace/actions/base64-to-file
+githubTempPath = '/Users/runner/work/_temp'
+
+# google cloud's service account key file absolute path on github's machine directory
+keyFilePath = githubTempPath + '/service_account_key.json'
 
 # apply the bucket domain to the credentials
 cred = credentials.Certificate(keyFilePath)
@@ -16,10 +19,12 @@ firebase_admin.initialize_app(cred, {
     'storageBucket' : 'json-upload-12aa7.appspot.com'
 })
 
+# refer to the storage bucket
 bucket = storage.bucket()
 
+# get the upload file's path in repository's directory
 fileName = 'test.zip'
-
+dirname = os.path.dirname(os.path.realpath(__file__))
 fileFullPath = dirname + '/' + fileName
 
 # if the file name contains file path, the bucket will create folders corresponding to the path.
