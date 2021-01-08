@@ -15,11 +15,13 @@ firebase_admin.initialize_app(cred, {
 
 bucket = storage.bucket()
 
-fileName = dirname + '/test.zip'
+fileName = 'test.zip'
+
+fileFullPath = dirname + '/' + fileName
 
 blob = bucket.blob(fileName)
 
-# Create new token
+# Create new token, this one only used for downloading directly from firebase console page
 accessToken = uuid4()
 
 # Create new dictionary with the metadata
@@ -28,8 +30,8 @@ metadata = { "firebaseStorageDownloadTokens": accessToken }
 # Set meta data for the blob wich contains the access token
 blob.metadata = metadata
 
-blob.upload_from_filename(fileName)
+blob.upload_from_filename(fileFullPath)
 
-#blob.make_public()
+blob.make_public()
 
 print("your file url ", blob.public_url)
