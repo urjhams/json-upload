@@ -100,8 +100,6 @@
 		4FCDF3A1259B922B003FFB4B = {
 			isa = PBXGroup;
 			children = (
-				4F70E4D525A3552A007E9246 /* test.zip */,
-				4F526B0925A72C1A005895D4 /* uploadScript.py */,
 				4FCDF3AC259B922B003FFB4B /* json-upload */,
 				4FCDF3BE259B922E003FFB4B /* json-uploadTests */,
 				4FCDF3C9259B922E003FFB4B /* json-uploadUITests */,
@@ -124,6 +122,8 @@
 		4FCDF3AC259B922B003FFB4B /* json-upload */ = {
 			isa = PBXGroup;
 			children = (
+				4F70E4D525A3552A007E9246 /* test.zip */,
+				4F526B0925A72C1A005895D4 /* uploadScript.py */,
 				4FFFFF9B259CADC800C98555 /* uploadScript.js */,
 				4F6FE7CC259B92FD00455E7E /* usb_conversion_tables.json */,
 				4FCDF3AD259B922B003FFB4B /* json_uploadApp.swift */,
