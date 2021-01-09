@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
+  test:
+    name: test CI
+    runs-on: macos-lastest
 #   testing:  #this jobs so far is from the template, just for the test, it will always success cuz we have no unit test
 #     name: Build and Test default scheme using any available iPhone simulator
 #     runs-on: macos-latest
