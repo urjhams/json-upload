@@ -8,7 +8,7 @@ on:
 jobs:
   ciTask:
     name: test CI
-    runs-on: macos-lastest
+    runs-on: macos-latest
     steps:
       #do something
         - run: echo 'do something here'
