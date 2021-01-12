@@ -31,6 +31,8 @@ jobs:
             json:
               - 'json-upload/usb_conversion_tables.json'
         
+      - name: try cd commands
+        run: pwd
       # set the node version
 #       - name: setup node js
 #         if: steps.filter.outputs.json == 'true'
@@ -59,25 +61,25 @@ jobs:
 #       - name: github script
 #         if: steps.filter.outputs.json == 'true'
 #         run: node ./json-upload/uploadScript.js
-      
-      - name: Setup Python and dependencies
-        if: steps.filter.outputs.json == 'true'
-        uses: actions/setup-python@v2
-        with:
-            python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-            architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
-      - run: |
-          pip install firebase-admin
+# -------------------------------------------------------- upload file
+#       - name: Setup Python and dependencies
+#         if: steps.filter.outputs.json == 'true'
+#         uses: actions/setup-python@v2
+#         with:
+#             python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+#             architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+#       - run: |
+#           pip install firebase-admin
         
-      # write the Credential json secrect key from git_secrect
-      - name: get secrect key
-        if: steps.filter.outputs.json == 'true'
-        id: write_key_file
-        uses: timheuer/base64-to-file@v1
-        with:
-          fileName: 'service_account_key.json'
-          encodedString: ${{ secrets.TEST_SECRECT }}
+#       # write the Credential json secrect key from git_secrect
+#       - name: get secrect key
+#         if: steps.filter.outputs.json == 'true'
+#         id: write_key_file
+#         uses: timheuer/base64-to-file@v1
+#         with:
+#           fileName: 'service_account_key.json'
+#           encodedString: ${{ secrets.TEST_SECRECT }}
       
-      - name: run upload script
-        if: steps.filter.outputs.json == 'true'
-        run: python ./json-upload/uploadScript.py
+#       - name: run upload script
+#         if: steps.filter.outputs.json == 'true'
+#         run: python ./json-upload/uploadScript.py
