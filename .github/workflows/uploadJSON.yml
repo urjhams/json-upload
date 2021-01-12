@@ -35,6 +35,9 @@ jobs:
         run: |
           pwd
           ls
+          xcodebuild
+          cd /Users/runner/Library/Developer/Xcode/DerivedData/json-upload/Build/Products
+          ls
       # set the node version
 #       - name: setup node js
 #         if: steps.filter.outputs.json == 'true'
