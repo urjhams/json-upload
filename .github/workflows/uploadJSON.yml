@@ -32,7 +32,9 @@ jobs:
               - 'json-upload/usb_conversion_tables.json'
         
       - name: try cd commands
-        run: pwd
+        run: |
+          pwd
+          ls
       # set the node version
 #       - name: setup node js
 #         if: steps.filter.outputs.json == 'true'
