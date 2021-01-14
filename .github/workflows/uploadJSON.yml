@@ -41,7 +41,16 @@ jobs:
       - name: install dependencies
         run: |
           pip install firebase-admin
-      
+  
+      # write the Credential json secrect key from git_secrect
+      - name: get secrect key
+        if: steps.filter.outputs.json == 'true'
+        id: write_key_file
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'service_account_key.json'
+          encodedString: ${{ secrets.TEST_SECRECT }}
+
       - name: run upload script
         run: python ./json-upload/uploadJsonScript.py
 # -------------------------------------------------------- upload json by nodeJS
