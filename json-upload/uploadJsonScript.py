@@ -4,12 +4,16 @@ import os
 import sys
 import json
 
-cred = credentials.ApplicationDefault()
+# base64 decoded key file will be stored in temporary directory
+# https://github.com/marketplace/actions/base64-to-file
+githubTempPath = '/Users/runner/work/_temp'
 
+# google cloud's service account key file absolute path on github's machine directory
+keyFilePath = githubTempPath + '/service_account_key.json'
+
+cred = credentials.Certificate(keyFilePath)
 firebase_admin.initialize_aap(cred, {
-    'apiKey' : 'AIzaSyDUEhb8jGrhNR53qEA0wB9f1M9IcnhPrXQ',
-    'authDomain' : 'json-upload-12aa7.firebaseapp.com'
-    'projectId': 'json-upload-12aa7',
+    'databaseURL': 'json-upload-12aa7.firebaseio.com'
 })
 
 db = firestore.client()

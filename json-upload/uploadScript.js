@@ -2,7 +2,7 @@ const firebase = require("firebase");
 
 const fs = require('fs');
 
- Initialize Cloud Firestore through Firebase
+//Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
 apiKey: "AIzaSyDUEhb8jGrhNR53qEA0wB9f1M9IcnhPrXQ",
 authDomain: "json-upload-12aa7.firebaseapp.com",
