@@ -32,7 +32,6 @@ jobs:
 
 # -------------------------------------------------------- upload json by python
       - name: Setup Python
-        if: steps.filter.outputs.json == 'true'
         uses: actions/setup-python@v2
         with:
             python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
@@ -44,7 +43,6 @@ jobs:
   
       # write the Credential json secrect key from git_secrect
       - name: get secrect key
-        if: steps.filter.outputs.json == 'true'
         id: write_key_file
         uses: timheuer/base64-to-file@v1
         with:
