@@ -12,7 +12,7 @@ githubTempPath = '/Users/runner/work/_temp'
 keyFilePath = githubTempPath + '/service_account_key.json'
 
 cred = credentials.Certificate(keyFilePath)
-firebase_admin.initialize_aap(cred, {
+firebase_admin.initialize_app(cred, {
     'databaseURL': 'json-upload-12aa7.firebaseio.com'
 })
 
