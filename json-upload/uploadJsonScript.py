@@ -33,5 +33,5 @@ fileFullPath = dirname + '/' + fileName
 with open(fileFullPath) as json_file:
     data = json.load(json_file)
     version = data['version']
-    uploadJsonToFireBase(data, version)
+    uploadJsonToFireBase(json.dumps(data), json.dumps(version))
 
