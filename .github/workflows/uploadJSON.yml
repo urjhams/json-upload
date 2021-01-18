@@ -15,7 +15,7 @@ jobs:
       #do something
         - run: |
             echo 'do something here'
-            echo "Event input: ${{ github.event.payload.value }}"
+            echo "Event input: ${{ github.event.client_payload.value }}"
           
   check-json:
     name: Make a json
