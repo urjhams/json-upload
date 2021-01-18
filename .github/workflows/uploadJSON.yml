@@ -13,7 +13,9 @@ jobs:
     runs-on: macos-latest
     steps:
       #do something
-        - run: echo 'do something here'
+        - run: |
+            echo 'do something here'
+            echo "Event input: ${{ github.event.payload.value }}"
           
   check-json:
     name: Make a json
