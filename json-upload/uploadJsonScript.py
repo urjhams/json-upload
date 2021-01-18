@@ -4,7 +4,7 @@ import os
 import json
 import sys
 
-print(sys.argv[1])
+print('test argument:' + sys.argv[1])
 
 # base64 decoded key file will be stored in temporary directory
 # https://github.com/marketplace/actions/base64-to-file
