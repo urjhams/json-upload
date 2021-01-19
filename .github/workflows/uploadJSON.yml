@@ -31,7 +31,7 @@ jobs:
           
   check-json:
     name: Make a json
-    if: success()   #if the previous job successed
+    needs: [checkPayload]
     runs-on: macos-latest
     steps:
       # check out the repository
