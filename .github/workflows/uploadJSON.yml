@@ -19,13 +19,14 @@ jobs:
             
   checkPayload:
     name: Check the input payload
+    needs: [ciTask]
     runs-on: macos-latest
     steps:
-      - name: check
+      - name: fail case
         if: github.event.client_payload.value != 'testing' && github.event.client_payload.value != 'tested'
         run: exit 1
         
-      - name: success
+      - name: success case
         run: echo 'successed! the value is ${{ github.event.client_payload.value }}'
         
           
