@@ -25,7 +25,8 @@ jobs:
       - name: fail case
         if: github.event.client_payload.value != 'testing' && github.event.client_payload.value != 'tested'
         run: |
-          exit 'your input argument(${{ github.event.client_payload.value }}) does not match with the available keys'
+          echo 'your input argument(${{ github.event.client_payload.value }}) does not match with the available keys'
+          exit 1
         
       - name: success case
         run: echo 'successed! the value is ${{ github.event.client_payload.value }}'
