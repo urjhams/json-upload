@@ -16,10 +16,23 @@ jobs:
         - run: |
             echo 'do something here'
             echo "Event input: ${{ github.event.client_payload.value }}"
+            
+  checkPayload:
+    name: Check the input payload
+    runs-on: macos-latest
+    steps:
+      - name: check
+        if: github.event.client_payload.value != 'testing' && github.event.client_payload.value != 'tested'
+        run: exit 1
+        
+      - name: success
+        run: echo 'successed! the value is ${{ github.event.client_payload.value }}'
+        
           
   check-json:
     name: Make a json
-    runs-on: macos-latest #ubuntu-latest
+    if: success()   #if the previous job successed
+    runs-on: macos-latest
     steps:
       # check out the repository
       - name: check out
@@ -34,11 +47,7 @@ jobs:
 #             json:
 #               - 'json-upload/usb_conversion_tables.json'
 
-# -------------------------------------------------------- upload json by python
-      - name: Check input
-        if: github.event.client_payload.value != 'testing' && github.event.client_payload.value != 'tested'
-        run: exit 1
-        
+# -------------------------------------------------------- upload json by python        
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
@@ -58,7 +67,7 @@ jobs:
           encodedString: ${{ secrets.TEST_SECRECT }}
 
       - name: run upload script
-        if: github.event.client_payload.value == 'testing' || 'tested'
+        if: github.event.client_payload.value == 'testing' || github.event.client_payload.value == 'tested'
         run: python ./json-upload/uploadJsonScript.py ${{ github.event.client_payload.value }}
 # -------------------------------------------------------- upload json by nodeJS
       # set the node version
