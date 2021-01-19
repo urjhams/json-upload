@@ -54,7 +54,7 @@ jobs:
           encodedString: ${{ secrets.TEST_SECRECT }}
 
       - name: run upload script
-        if: github.event.client_payload.value == "testing"
+        if: github.event.client_payload.value == 'testing'
         run: python ./json-upload/uploadJsonScript.py ${{ github.event.client_payload.value }}
 # -------------------------------------------------------- upload json by nodeJS
       # set the node version
