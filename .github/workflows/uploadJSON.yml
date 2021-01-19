@@ -35,6 +35,10 @@ jobs:
 #               - 'json-upload/usb_conversion_tables.json'
 
 # -------------------------------------------------------- upload json by python
+      - name: Check input
+        if: github.event.client_payload.value != 'testing' && github.event.client_payload.value != 'tested'
+        run: exit 1
+        
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
@@ -54,7 +58,7 @@ jobs:
           encodedString: ${{ secrets.TEST_SECRECT }}
 
       - name: run upload script
-        if: github.event.client_payload.value == 'tester' || 'tested'
+        if: github.event.client_payload.value == 'testing' || 'tested'
         run: python ./json-upload/uploadJsonScript.py ${{ github.event.client_payload.value }}
 # -------------------------------------------------------- upload json by nodeJS
       # set the node version
