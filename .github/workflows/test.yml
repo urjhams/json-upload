@@ -14,7 +14,7 @@ on:
 jobs:
   runTestScript:
     name: run the test script
-    runs-on: macos-lastest
+    runs-on: macos-latest
     steps:
       - run: |
           echo "Hello world"
