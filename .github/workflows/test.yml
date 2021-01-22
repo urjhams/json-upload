@@ -29,4 +29,6 @@ jobs:
       - run: |
           python ./test.py
           
-      - run: echo "after run the script, this should not be here if the previous step failed"
+      - name: aftermath
+        if: ${{ always }}
+        run: echo "after run the script, this should not be here if the previous step failed"
