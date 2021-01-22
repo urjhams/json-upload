@@ -27,4 +27,4 @@ jobs:
           pip install firebase-admin
           
       - run: |
-          python./test.py
+          python ./test.py
