@@ -30,6 +30,9 @@ fileFullPath = dirname + '/' + fileName
 # if the file name contains file path, the bucket will create folders corresponding to the path.
 blob = bucket.blob(fileName)
 
+if blob.exists():
+    sys.exit("file existed")
+
 # Create new token, this one only used for downloading directly from firebase console page
 accessToken = uuid4()
 
