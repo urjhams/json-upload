@@ -26,21 +26,21 @@ jobs:
       # If there is a git tag for the version set the variable 'tagged' to 0
       # if there is NOT a git tag for the version set the variable 'tagged' to 1
       - name: 'Check: package version has corrosponding git tag'
-        id: tags
+        id: tagged
         shell: bash
         run: |
           git show-ref --tags --verify --quiet -- \
           "refs/tags/v${{ steps.package.outputs.version }}" && \
-          echo "::set-output name=tags::0" || \
-          echo "::set-output name=tags::1"
+          echo "::set-output name=hasTag::0" || \
+          echo "::set-output name=hasTag::1"
         
       - name: has tag case
-        if: steps.tags.ouput.tags != 1
-        run: echo "number of tags ${{ steps.tas.ouput.tags }}"
+        if: steps.tagged.ouput.hasTag != 1
+        run: echo "has tag"
         
       - name: has no tag case
-        if: steps.tags.output.tags == 1
-        run: echo "there is no tags"
+        if: steps.tagged.output.hasTag == 1
+        run: echo "has no tags"
         
 #       - name: get current tag
 #         run: |
