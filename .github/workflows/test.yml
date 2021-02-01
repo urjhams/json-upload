@@ -19,13 +19,36 @@ jobs:
       - name: Check out
         uses: actions/checkout@v2
         
+      # Fetches all tags for the repo
+      - name: Fetch tags
+        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+        
+      # Check if the app version has a git tag
+      # If there is a git tag for the version set the variable 'tagged' to 0
+      # if there is NOT a git tag for the version set the variable 'tagged' to 1
+      - name: 'Check: package version has corrosponding git tag'
+        id: tags
+        shell: bash
+        run: |
+          git show-ref --tags --verify --quiet -- \
+          "refs/tags/v${{ steps.package.outputs.version }}" && \
+          echo "::set-output name=tags::0" || \
+          echo "::set-output name=tags::1"
+        
+      - name: has tag case
+        if: steps.tags.ouput.tags != 0
+        run: echo "number of tags ${{ steps.tas.ouput.tags }}"
+        
+      - name: has no tag case
+        if: steps.tags.output.tags == 0
+        run: echo "there is no tags"
         
 #       - name: get current tag
 #         run: |
 #           echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
           
-      - name: call out current tag
-        run: echo "$GITHUB_REF"
+#       - name: call out current tag
+#         run: echo "$GITHUB_REF"
       
 #       - name: increase current tag
         
