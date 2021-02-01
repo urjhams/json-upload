@@ -12,23 +12,43 @@ on:
     
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  runTestScript:
-    name: run the test script
+  bumpTag:
+    name: Generate and bump tag number
     runs-on: macos-latest
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-            python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-            architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
-            
-      - name: install dependencies
+      - name: Check out
+        uses: actions/checkout@v2
+        
+        
+      - name: get current tag
         run: |
-          pip install firebase-admin
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
           
-      - run: |
-          python ./test.py
+      - name: call out current tag
+        run: echo $RELEASE_VERSION
+      
+      - name: increase current tag
+        
+        
+      - name: bump new tag
+        
+#   runTestScript:
+#     name: run the test script
+#     runs-on: macos-latest
+#     steps:
+#       - name: Setup Python
+#         uses: actions/setup-python@v2
+#         with:
+#             python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+#             architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+            
+#       - name: install dependencies
+#         run: |
+#           pip install firebase-admin
           
-      - name: aftermath
-        #if: ${{ always() }}    # this will keep run this step even the previous steps are failed
-        run: echo "after run the script, this should not be here if the previous step failed"
+#       - run: |
+#           python ./test.py
+          
+#       - name: aftermath
+#         #if: ${{ always() }}    # this will keep run this step even the previous steps are failed
+#         run: echo "after run the script, this should not be here if the previous step failed"
