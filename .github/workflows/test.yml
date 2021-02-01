@@ -20,7 +20,8 @@ jobs:
         
       # Fetches all tags for the repo
       - name: Fetch tags
-        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+        run: git fetch --prune --unshallow --tags
+        #run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
         
       # Check if the app version has a git tag
       # If there is a git tag for the version set the variable 'tagged' to 0
@@ -35,7 +36,7 @@ jobs:
           echo "::set-output name=hasTag::1"
         
       - name: has tag case
-        if: steps.tagged.ouput.hasTag != 1
+        if: steps.tagged.ouput.hasTag == 0
         run: echo "has tag"
         
       - name: has no tag case
