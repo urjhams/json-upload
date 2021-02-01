@@ -27,10 +27,17 @@ jobs:
       - name: call out current tag
         run: echo $RELEASE_VERSION
       
-      - name: increase current tag
+#       - name: increase current tag
         
         
-      - name: bump new tag
+#       - name: bump new tag
+        
+        
+        
+        
+        
+        
+        
         
 #   runTestScript:
 #     name: run the test script
