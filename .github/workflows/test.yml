@@ -13,6 +13,8 @@ jobs:
   checking:
     name: Check job
     runs-on: macos-latest
+    env:
+      ACCESS_TOKEN: ${{ secrets.TEST_SECRECT }}
     steps:
       - name: print out the run number of this workflow
         run: |
@@ -23,6 +25,7 @@ jobs:
         run: |
           curl \
           -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token $ACCESS_TOKEN" \
           https://api.github.com/repos/urjhams/json-upload/check-runs/${{ github.run_id }}/annotations
           
 # ------------------------------------------------------------------------------------------------
