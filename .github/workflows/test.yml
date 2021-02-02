@@ -10,31 +10,38 @@ on:
     
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  bumpTag:
-    name: Generate and bump tag number
+  checking:
+    name: Check job
     runs-on: macos-latest
     steps:
-      - name: Check out
-        uses: actions/checkout@v2
+      - name: print out the run number of this workflow
+        run: echo "${{ github.run_number }}"
+# ------------------------------------------------------------------------------------------------
+#   bumpTag:
+#     name: Generate and bump tag number
+#     runs-on: macos-latest
+#     steps:
+#       - name: Check out
+#         uses: actions/checkout@v2
         
-      # Fetches all tags for the repo
-      - name: Fetch tags
-#         run: git fetch --prune --unshallow --tags
-        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+#       # Fetches all tags for the repo
+#       - name: Fetch tags
+# #         run: git fetch --prune --unshallow --tags
+#         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
         
-      # Check if the app version has a git tag
-      # If there is a git tag for the version set the variable 'tagged' to 0
-      # if there is NOT a git tag for the version set the variable 'tagged' to 1
-      - name: 'Check: package version has corrosponding git tag'
-        id: tagged
-        shell: bash
-        run: |
-          git show-ref --tags --verify --quiet -- \
-          "refs/tags/v${{ steps.package.outputs.version }}" && \
-          echo "::set-output name=hasTag::0" || \
-          echo "::set-output name=hasTag::1"
+#       # Check if the app version has a git tag
+#       # If there is a git tag for the version set the variable 'tagged' to 0
+#       # if there is NOT a git tag for the version set the variable 'tagged' to 1
+#       - name: 'Check: package version has corrosponding git tag'
+#         id: tagged
+#         shell: bash
+#         run: |
+#           git show-ref --tags --verify --quiet -- \
+#           "refs/tags/v${{ steps.package.outputs.version }}" && \
+#           echo "::set-output name=hasTag::0" || \
+#           echo "::set-output name=hasTag::1"
           
-      - run: echo "${{ steps.tagged.ouput.hasTag }}"
+#       - run: echo "${{ steps.tagged.ouput.hasTag }}"
 #       - name: has tag case
 #         if: steps.tagged.ouput.hasTag == 0
 #         run: echo "has tag"
