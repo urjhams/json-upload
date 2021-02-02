@@ -19,6 +19,12 @@ jobs:
           echo "this is the run number ${{ github.run_number }}"
           echo "the id is ${{ github.run_id }}"
           
+      - name: check run
+        run: |
+          curl \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/urjhams/json-upload/check-runs/${{ github.run_id }}/annotations
+          
 # ------------------------------------------------------------------------------------------------
 #   bumpTag:
 #     name: Generate and bump tag number
