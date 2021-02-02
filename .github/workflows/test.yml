@@ -25,7 +25,8 @@ jobs:
         run: |
           curl \
           -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/urjhams/json-upload/actions/runs
+          https://api.github.com/repos/urjhams/json-upload/actions/runs \
+          -d status=in_progress
           
 # ------------------------------------------------------------------------------------------------
 #   bumpTag:
