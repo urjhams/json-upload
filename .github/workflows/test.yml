@@ -33,7 +33,7 @@ jobs:
           )
           
       - name: post step
-        run: echo $RESPONSE
+        run: echo "$RESPONSE"
 # ------------------------------------------------------------------------------------------------
 #   bumpTag:
 #     name: Generate and bump tag number
