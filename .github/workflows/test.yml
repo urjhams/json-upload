@@ -20,6 +20,7 @@ jobs:
         run: |
           echo "this is the run number ${{ github.run_number }}"
           echo "the id is ${{ github.run_id }}"
+          echo "repo name is ${{ github.event.repository.name }}"
           
       - name: check run
         run: |
