@@ -26,12 +26,14 @@ jobs:
           
       - name: check run
         run: |
+          RESPONSE=$(\
           curl \
           -H "Accept: application/vnd.github.v3+json" \
-          "https://api.github.com/repos/${{ github.actor }}/${{ github.event.repository.name }}/actions/runs?status=in_progress&name=${{ github.workflow }}"
+          "https://api.github.com/repos/${{ github.actor }}/${{ github.event.repository.name }}/actions/runs?status=in_progress&name=${{ github.workflow }}"\
+          )
           
       - name: post step
-        run: echo "finishing"
+        run: echo $RESPONSE
 # ------------------------------------------------------------------------------------------------
 #   bumpTag:
 #     name: Generate and bump tag number
