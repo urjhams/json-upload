@@ -22,12 +22,13 @@ jobs:
           echo "the id is ${{ github.run_id }}"
           echo "the owner name is ${{ github.actor }}"
           echo "repo name is ${{ github.event.repository.name }}"
+          echo "current workflow name is ${{ github.workflow }}"
           
       - name: check run
         run: |
           curl \
           -H "Accept: application/vnd.github.v3+json" \
-          "https://api.github.com/repos/${{ github.actor }}/${{ github.event.repository.name }}/actions/runs?status=in_progress&name=Test_Workflow"
+          "https://api.github.com/repos/${{ github.actor }}/${{ github.event.repository.name }}/actions/runs?status=in_progress&name=${{ github.workflow }}"
           
 # ------------------------------------------------------------------------------------------------
 #   bumpTag:
