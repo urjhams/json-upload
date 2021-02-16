@@ -16,11 +16,9 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
         
-      - name: sleeping
-        run: sleep 30
-        
-      - name: fetch
-        run: git fetch --verbose
+      - name: information
+        run: |
+          echo ${{ github.event.pusher.name }}
         
 #       - name: print out the run number of this workflow
 #         run: |
