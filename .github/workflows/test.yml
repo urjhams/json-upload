@@ -20,6 +20,14 @@ jobs:
         run: |
           echo ${{ github.event.pusher.name }}
           echo ${{ github.event.pusher.email }}
+    
+      - name: assign issue
+        uses: JasonEtco/create-an-issue@v2
+        with:
+          title: Duplicate issue (Test name)
+          assignees: ${{ github.event.pusher.name }}
+          label: bug
+        
         
 #       - name: print out the run number of this workflow
 #         run: |
