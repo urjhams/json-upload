@@ -26,11 +26,11 @@ jobs:
       - name: assign issue
         run: |
           curl \
-          -X POST \
+          -X POST -s \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token $ACCESS_TOKEN" \
           https://api.github.com/repos/${{ github.actor }}/${{ github.event.repository.name }}/issues \
-          -d '{"title": "title", "assignees": ["urjhams"]}'
+          -d '{"title": "title", "assignees": ["urjhams"]}' > /dev/null
         
 #       - name: print out the run number of this workflow
 #         run: |
