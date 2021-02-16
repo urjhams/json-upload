@@ -23,6 +23,8 @@ jobs:
     
       - name: assign issue
         uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.TEST_SECRECT }}
         with:
           assignees: ${{ github.event.pusher.name }}
         
