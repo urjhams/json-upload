@@ -28,9 +28,7 @@ jobs:
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token $ACCESS_TOKEN" \
-          https://api.github.com/repos/${{ github.actor }}/${{ github.event.repository.name }}/issues \
-          -d '{"title":"title"}'
-        
+          https://api.github.com/repos/${{ github.actor }}/${{ github.event.repository.name }}/issues
         
 #       - name: print out the run number of this workflow
 #         run: |
