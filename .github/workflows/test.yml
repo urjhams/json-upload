@@ -19,6 +19,7 @@ jobs:
       - name: information
         run: |
           echo ${{ github.event.pusher.name }}
+          echo ${{ github.event.pusher.email }}
         
 #       - name: print out the run number of this workflow
 #         run: |
