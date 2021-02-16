@@ -21,6 +21,7 @@ jobs:
         run: |
           echo ${{ github.event.pusher.name }}
           echo ${{ github.event.pusher.email }}
+          echo $ACCESS_TOKEN
     
       - name: assign issue
         run: |
