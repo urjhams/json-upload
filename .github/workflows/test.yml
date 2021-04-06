@@ -16,21 +16,24 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+        with:
+          ref: test
         
       - name: information
         run: |
           echo ${{ github.event.pusher.name }}
           echo ${{ github.event.pusher.email }}
           echo $ACCESS_TOKEN
-    
-      - name: assign issue
-        run: |
-          curl \
-          -X POST -s \
-          -H "Accept: application/vnd.github.v3+json" \
-          -H "Authorization: token $ACCESS_TOKEN" \
-          https://api.github.com/repos/${{ github.actor }}/${{ github.event.repository.name }}/issues \
-          -d '{"title": "title", "assignees": ["urjhams"]}' > /dev/null
+          git branch --show-current
+          
+#       - name: assign issue
+#         run: |
+#           curl \
+#           -X POST -s \
+#           -H "Accept: application/vnd.github.v3+json" \
+#           -H "Authorization: token $ACCESS_TOKEN" \
+#           https://api.github.com/repos/${{ github.actor }}/${{ github.event.repository.name }}/issues \
+#           -d '{"title": "title", "assignees": ["urjhams"]}' > /dev/null
         
 #       - name: print out the run number of this workflow
 #         run: |
