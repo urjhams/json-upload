@@ -1,0 +1,22 @@
+name: Test_Workflow2
+##
+on:
+  pull_request:
+     branches: [ test ]
+     types: [closed]
+    
+jobs:
+
+  validation:
+    name: Validation job
+    runs-on: macos-latest
+    steps:
+      - name: fail case
+        if: github.event.pull_request.merged == false
+        run: |
+          echo 'The pull request is closed but not merged'
+          exit 1
+          
+      - name: success case
+        if: github.event.pull_request.merged == true
+        run: echo "The pull request is closed and merged"
