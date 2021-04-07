@@ -25,7 +25,7 @@ jobs:
           echo ${{ github.event.pusher.email }}
           echo $ACCESS_TOKEN
           git branch --show-current
-          OUTPUT=$(git describe --abbrev=0)
+          OUTPUT=$(git describe --tags)
       
       - name: print out tag
         run: |
