@@ -34,8 +34,7 @@ jobs:
           echo ${{ env.TAG }}
           input=${{ env.TAG }}
           arr=(${input//./ })
-          echo ${arr[1]}
-          bash ./test.sh 1 2
+          bash ./test.sh ${arr[0]} ${arr[1]}
           
         #echo "NEW=$(bash ./test.sh ${arr[0]} ${arr[1]})" >> $GITHUB_ENV
         #echo ${{ env.NEW }}
