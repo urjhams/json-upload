@@ -1,71 +1,126 @@
 name: JSON upload Firebase workflow
 
 on:
-  push:
+  repository_dispatch:
+    type: [upload-the-json] # only dispatches with the custom type 'upload-the-json' can trigger this action
+#   push:
 #     branches: [ main ]
-    paths:
-      - './json-upload/usb_conversion_tables.json'
-  pull_request:
-    paths: 
+#   pull_request:
 #     branches: [ main ]
-      - './json-upload/usb_conversion_tables.json'
 jobs:
-#   testing:  #this jobs so far is from the template, just for the test, it will always success cuz we have no unit test
-#     name: Build and Test default scheme using any available iPhone simulator
-#     runs-on: macos-latest
-
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#       - name: Set Default Scheme
-#         run: |
-#           scheme_list=$(xcodebuild -list -json | tr -d "\n")
-#           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-#           echo $default | cat >default
-#           echo Using default scheme: $default
-#       - name: Build
-#         env:
-#           scheme: ${{ 'default' }}
-#           platform: ${{ 'iOS Simulator' }}
-#         run: |
-#           device=`instruments -s -devices | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}'`
-#           if [ $scheme = default ]; then scheme=$(cat default); fi
-#           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
-#           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-#           xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
-#       - name: Test
-#         env:
-#           scheme: ${{ 'default' }}
-#           platform: ${{ 'iOS Simulator' }}
-#         run: |
-#           device=`instruments -s -devices | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}'`
-#           if [ $scheme = default ]; then scheme=$(cat default); fi
-#           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
-#           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-#           xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
+  ciTask:
+    name: test CI
+    runs-on: macos-latest
+    steps:
+      #do something
+        - run: |
+            echo 'do something here'
+            echo "Event input: ${{ github.event.client_payload.value }}"
+            
+  checkPayload:
+    name: Check the input payload
+    needs: [ciTask]
+    runs-on: macos-latest
+    steps:
+      - name: fail case
+        if: github.event.client_payload.value != 'testing' && github.event.client_payload.value != 'tested'
+        run: |
+          echo 'Oops'
+          echo 'your input argument(${{ github.event.client_payload.value }}) does not match with the available keys'
+          exit 1
+        
+      - name: success case
+        run: echo 'successed! the value is ${{ github.event.client_payload.value }}'
+        
+          
   check-json:
-#     needs: [testing]
     name: Make a json
-    runs-on: ubuntu-latest
+    needs: [checkPayload]
+    runs-on: macos-latest
     steps:
       # check out the repository
       - name: check out
         uses: actions/checkout@v2
-        
+      
+      # filter to detect different in files
+#       - name: filter
+#         uses: dorny/paths-filter@v2
+#         id: filter
+#         with:
+#           filters: |
+#             json:
+#               - 'json-upload/usb_conversion_tables.json'
+
+# -------------------------------------------------------- upload json by python        
+#       - name: Setup Python
+#         uses: actions/setup-python@v2
+#         with:
+#             python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+#             architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+            
+#       - name: install dependencies
+#         run: |
+#           pip install firebase-admin
+  
+#       # write the Credential json secrect key from git_secrect
+#       - name: get secrect key
+#         id: write_key_file
+#         uses: timheuer/base64-to-file@v1
+#         with:
+#           fileName: 'service_account_key.json'
+#           encodedString: ${{ secrets.TEST_SECRECT }}
+
+#       - name: run upload script
+#         if: github.event.client_payload.value == 'testing' || github.event.client_payload.value == 'tested'
+#         run: python ./json-upload/uploadJsonScript.py ${{ github.event.client_payload.value }}
+# -------------------------------------------------------- upload json by nodeJS
       # set the node version
-      - name: setup node js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12'
+#       - name: setup node js
+#         if: steps.filter.outputs.json == 'true'
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: '12'
           
       # install the node js on environment for the upload script to use
-      - name: install node js
-        run: npm install
+#       - name: install node js
+#         if: steps.filter.outputs.json == 'true'
+#         run: npm install
       
       # install firebase library
-      - name: install firebase library for node js
-        run: npm install firebase
+#       - name: install firebase library for node js
+#         if: steps.filter.outputs.json == 'true'
+#         run: npm install firebase
+        #npm i @google-cloud/storage
+          
+      #- run: npm i express
+      # install XMLHttpRequest
+#       - name: install XMLHttprequest module
+#         if: steps.filter.outputs.json == 'true'
+#         run: npm install xmlhttprequest
       
       # run the upload script in the repository
-      - name: github script
-        run: node ./json-upload/uploadScript.js
+#       - name: github script
+#         if: steps.filter.outputs.json == 'true'
+#         run: node ./json-upload/uploadScript.js
+# -------------------------------------------------------- upload file
+      - name: Setup Python and dependencies
+#         if: steps.filter.outputs.json == 'true'
+        uses: actions/setup-python@v2
+        with:
+            python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+            architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+      - run: |
+          pip install firebase-admin
+        
+      # write the Credential json secrect key from git_secrect
+      - name: get secrect key
+#         if: steps.filter.outputs.json == 'true'
+        id: write_key_file
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'service_account_key.json'
+          encodedString: ${{ secrets.TEST_SECRECT }}
+      
+      - name: run upload script
+#         if: steps.filter.outputs.json == 'true'
+        run: python ./json-upload/uploadScript.py

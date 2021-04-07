@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3B76D645003C28897A2BEA3F /* Pods_json_upload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C083B06D05FF2996F8CA23B8 /* Pods_json_upload.framework */; };
+		4F526B0A25A72C1A005895D4 /* uploadScript.py in Resources */ = {isa = PBXBuildFile; fileRef = 4F526B0925A72C1A005895D4 /* uploadScript.py */; };
 		4F6FE7CD259B92FD00455E7E /* usb_conversion_tables.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F6FE7CC259B92FD00455E7E /* usb_conversion_tables.json */; };
+		4F70E4D625A3552A007E9246 /* test.zip in Resources */ = {isa = PBXBuildFile; fileRef = 4F70E4D525A3552A007E9246 /* test.zip */; };
+		4F79149B25B06648009B7989 /* uploadJsonScript.py in Resources */ = {isa = PBXBuildFile; fileRef = 4F79149A25B06648009B7989 /* uploadJsonScript.py */; };
+		4F7914A025B068B9009B7989 /* default_table_v3.2.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F79149F25B068B9009B7989 /* default_table_v3.2.json */; };
 		4FCDF3AE259B922B003FFB4B /* json_uploadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDF3AD259B922B003FFB4B /* json_uploadApp.swift */; };
 		4FCDF3B0259B922B003FFB4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDF3AF259B922B003FFB4B /* ContentView.swift */; };
 		4FCDF3B2259B922E003FFB4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FCDF3B1259B922E003FFB4B /* Assets.xcassets */; };
@@ -41,7 +45,11 @@
 /* Begin PBXFileReference section */
 		29027D60EB452A28249B7BEE /* Pods_json_uploadTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_json_uploadTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EDCF8C3EC1B89F8BBECA28C /* Pods-json-upload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-json-upload.debug.xcconfig"; path = "Target Support Files/Pods-json-upload/Pods-json-upload.debug.xcconfig"; sourceTree = "<group>"; };
+		4F526B0925A72C1A005895D4 /* uploadScript.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = uploadScript.py; sourceTree = "<group>"; };
 		4F6FE7CC259B92FD00455E7E /* usb_conversion_tables.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = usb_conversion_tables.json; sourceTree = "<group>"; };
+		4F70E4D525A3552A007E9246 /* test.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = test.zip; sourceTree = "<group>"; };
+		4F79149A25B06648009B7989 /* uploadJsonScript.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = uploadJsonScript.py; sourceTree = "<group>"; };
+		4F79149F25B068B9009B7989 /* default_table_v3.2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = default_table_v3.2.json; sourceTree = "<group>"; };
 		4FCDF3AA259B922B003FFB4B /* json-upload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "json-upload.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FCDF3AD259B922B003FFB4B /* json_uploadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = json_uploadApp.swift; sourceTree = "<group>"; };
 		4FCDF3AF259B922B003FFB4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +126,10 @@
 		4FCDF3AC259B922B003FFB4B /* json-upload */ = {
 			isa = PBXGroup;
 			children = (
+				4F79149F25B068B9009B7989 /* default_table_v3.2.json */,
+				4F79149A25B06648009B7989 /* uploadJsonScript.py */,
+				4F70E4D525A3552A007E9246 /* test.zip */,
+				4F526B0925A72C1A005895D4 /* uploadScript.py */,
 				4FFFFF9B259CADC800C98555 /* uploadScript.js */,
 				4F6FE7CC259B92FD00455E7E /* usb_conversion_tables.json */,
 				4FCDF3AD259B922B003FFB4B /* json_uploadApp.swift */,
@@ -287,9 +299,13 @@
 			files = (
 				4FCDF3B5259B922E003FFB4B /* Preview Assets.xcassets in Resources */,
 				4FFFFF84259BC1EE00C98555 /* GoogleService-Info.plist in Resources */,
+				4F7914A025B068B9009B7989 /* default_table_v3.2.json in Resources */,
 				4FFFFF9C259CADC800C98555 /* uploadScript.js in Resources */,
+				4F526B0A25A72C1A005895D4 /* uploadScript.py in Resources */,
 				4F6FE7CD259B92FD00455E7E /* usb_conversion_tables.json in Resources */,
 				4FCDF3B2259B922E003FFB4B /* Assets.xcassets in Resources */,
+				4F79149B25B06648009B7989 /* uploadJsonScript.py in Resources */,
+				4F70E4D625A3552A007E9246 /* test.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

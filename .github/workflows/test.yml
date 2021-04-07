@@ -1,0 +1,126 @@
+name: Test_Workflow
+##
+on:
+  push:
+    branches: [ test ]
+  pull_request:
+    branches: [ test ]
+    
+jobs:
+  checking:
+    name: Check job
+    runs-on: macos-latest
+  
+    env:
+      ACCESS_TOKEN: ${{ secrets.TEST_SECRECT }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: test
+        
+      - name: information
+        run: |
+          echo ${{ github.event.pusher.name }}
+          echo ${{ github.event.pusher.email }}
+          git branch --show-current
+      
+      - name: set environment
+        run: |
+          echo "LASTESTTAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+      
+      - name: print out tag
+        run: |
+          input=${{ env.LASTESTTAG }}
+          newTag=$(bash ./minorTag.sh $input)
+          git tag $newTag
+          git push origin $newTag
+          
+        #echo "NEW=$(bash ./test.sh ${arr[0]} ${arr[1]})" >> $GITHUB_ENV
+        #echo ${{ env.NEW }}
+#       - name: assign issue
+#         run: |
+#           curl \
+#           -X POST -s \
+#           -H "Accept: application/vnd.github.v3+json" \
+#           -H "Authorization: token $ACCESS_TOKEN" \
+#           https://api.github.com/repos/${{ github.actor }}/${{ github.event.repository.name }}/issues \
+#           -d '{"title": "title", "assignees": ["urjhams"]}' > /dev/null
+        
+#       - name: print out the run number of this workflow
+#         run: |
+#           echo "this is the run number ${{ github.run_number }}"
+#           echo "the id is ${{ github.run_id }}"
+#           echo "the owner name is ${{ github.actor }}"
+#           echo "repo name is ${{ github.event.repository.name }}"
+#           echo "current workflow name is ${{ github.workflow }}"
+          
+#       - name: check run
+#         run: |
+#           RESPONSE=$(\
+#           curl \
+#           -H "Accept: application/vnd.github.v3+json" \
+#           "https://api.github.com/repos/${{ github.actor }}/${{ github.event.repository.name }}/actions/runs?status=in_progress&name=${{ github.workflow }}"\
+#           )
+#           echo "$RESPONSE"
+          
+#       - name: post step
+#         run: echo "finishing"
+
+
+# ------------------------------------------------------------------------------------------------
+#   bumpTag:
+#     name: Generate and bump tag number
+#     runs-on: macos-latest
+#     steps:
+#       - name: Check out
+#         uses: actions/checkout@v2
+        
+#       # Fetches all tags for the repo
+#       - name: Fetch tags
+# #         run: git fetch --prune --unshallow --tags
+#         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+        
+#       # Check if the app version has a git tag
+#       # If there is a git tag for the version set the variable 'tagged' to 0
+#       # if there is NOT a git tag for the version set the variable 'tagged' to 1
+#       - name: 'Check: package version has corrosponding git tag'
+#         id: tagged
+#         shell: bash
+#         run: |
+#           git show-ref --tags --verify --quiet -- \
+#           "refs/tags/v${{ steps.package.outputs.version }}" && \
+#           echo "::set-output name=hasTag::0" || \
+#           echo "::set-output name=hasTag::1"
+          
+#       - run: echo "${{ steps.tagged.ouput.hasTag }}"
+#       - name: has tag case
+#         if: steps.tagged.ouput.hasTag == 0
+#         run: echo "has tag"
+        
+#       - name: has no tag case
+#         if: steps.tagged.output.hasTag == 1
+#         run: echo "has no tags"
+
+# ------------------------------------------------------------------------------------------------
+#   runTestScript:
+#     name: run the test script
+#     runs-on: macos-latest
+#     steps:
+#       - name: Setup Python
+#         uses: actions/setup-python@v2
+#         with:
+#             python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+#             architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+            
+#       - name: install dependencies
+#         run: |
+#           pip install firebase-admin
+          
+#       - run: |
+#           python ./test.py
+          
+#       - name: aftermath
+#         #if: ${{ always() }}    # this will keep run this step even the previous steps are failed
+#         run: echo "after run the script, this should not be here if the previous step failed"
