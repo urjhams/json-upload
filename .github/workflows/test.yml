@@ -3,8 +3,6 @@ name: Test_Workflow
 on:
   push:
     branches: [ test ]
-  pull_request:
-    branches: [ test ]
     
 jobs:
   checking:
