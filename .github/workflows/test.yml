@@ -32,7 +32,7 @@ jobs:
       - name: print out tag
         run: |
           echo "printing out"
-          echo "${{ env.TAG }}"
+          echo ${{ env.TAG }}
           
 #       - name: assign issue
 #         run: |
