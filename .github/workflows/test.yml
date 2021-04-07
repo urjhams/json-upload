@@ -24,12 +24,12 @@ jobs:
           echo ${{ github.event.pusher.name }}
           echo ${{ github.event.pusher.email }}
           git branch --show-current
-          git describe --tags --abbrev=0
+          TAG=$(git describe --tags --abbrev=0)
       
-#       - name: print out tag
-#         run: |
-#           echo "printing out"
-#           echo "$OUTPUT"
+      - name: print out tag
+        run: |
+          echo "printing out"
+          echo "$TAG"
           
 #       - name: assign issue
 #         run: |
