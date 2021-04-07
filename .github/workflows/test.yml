@@ -27,18 +27,14 @@ jobs:
       
       - name: set environment
         run: |
-          echo "TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+          echo "LASTESTTAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
       
       - name: print out tag
         run: |
-          echo ${{ env.TAG }}
-          input=${{ env.TAG }}
-          arr=(${input//./ })
-          new=$(bash ./test.sh ${arr[0]} ${arr[1]})
-          bash --version
-          
-        #git tag $new
-        #git push origin --tags
+          input=${{ env.LASTESTTAG }}
+          newTag=$(bash ./minorTag.sh $input)
+          git tag $newTag
+          git push origin --tags
           
         #echo "NEW=$(bash ./test.sh ${arr[0]} ${arr[1]})" >> $GITHUB_ENV
         #echo ${{ env.NEW }}
