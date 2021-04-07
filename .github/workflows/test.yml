@@ -23,14 +23,14 @@ jobs:
         run: |
           echo ${{ github.event.pusher.name }}
           echo ${{ github.event.pusher.email }}
-          echo $ACCESS_TOKEN
           git branch --show-current
-          OUTPUT=$(git describe --tags)
+          git describe --abbrev=0
+          OUTPUT=$(git describe --abbrev=0)
       
-      - name: print out tag
-        run: |
-          echo "printing out"
-          echo "$OUTPUT"
+#       - name: print out tag
+#         run: |
+#           echo "printing out"
+#           echo "$OUTPUT"
           
 #       - name: assign issue
 #         run: |
