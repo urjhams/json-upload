@@ -35,7 +35,8 @@ jobs:
           input=${{ env.TAG }}
           arr=(${input//./ })
           new=$(bash ./test.sh ${arr[0]} ${arr[1]})
-          git push origin :refs/tags/$new
+          git tag $new
+          git push origin --tags
           
         #echo "NEW=$(bash ./test.sh ${arr[0]} ${arr[1]})" >> $GITHUB_ENV
         #echo ${{ env.NEW }}
