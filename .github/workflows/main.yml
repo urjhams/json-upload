@@ -27,7 +27,7 @@ jobs:
       # we will set it as CURRENT_BRANCH environemnt variable that can access as ${{ env.CURRENT_BRANCH }}
       - name: branch define
         run: |
-          echo "CURRENT_BRANCH=$([ $# == 'main' ] && { echo "main"; } || { echo "test"; })" >> $GITHUB_ENV
+          echo "CURRENT_BRANCH=$([ ${{ github.ref }} == 'main' ] && { echo "main"; } || { echo "test"; })" >> $GITHUB_ENV
       
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
