@@ -42,5 +42,11 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          keys=''
+          if [ ${{ env.CURRENT_BRANCH }} == 'develop' ]
+          then
+            keys=${{ steps.write_key_file_unleashed_dev.outputs.filePath }}
+          else
+            keys=${{ steps.write_key_file_unleashed.outputs.filePath }},${{ steps.write_key_file_enttaged.outputs.filePath }}
+          fi
+          echo $keys
