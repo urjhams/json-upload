@@ -45,8 +45,8 @@ jobs:
           keys=''
           if [ ${{ env.CURRENT_BRANCH }} == 'develop' ]
           then
-            keys=${{ steps.write_key_file_unleashed_dev.outputs.filePath }}
+            keys='hahahaha'
           else
-            keys=${{ steps.write_key_file_unleashed.outputs.filePath }},${{ steps.write_key_file_enttaged.outputs.filePath }}
+            keys='okokokokok','nonononono'
           fi
           echo $keys
