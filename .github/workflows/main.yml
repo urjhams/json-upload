@@ -6,47 +6,29 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main, test ]
-  pull_request:
-    branches: [ main, test ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
+    branches: [ main ]
+    
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  changes:
+    name: Filter change check job
     runs-on: macos-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    outputs:
+      iconfont: ${{ steps.filter.outputs.testScript }}
     steps:
-    
-      # define this is develop or release
-      # we will set it as CURRENT_BRANCH environemnt variable that can access as ${{ env.CURRENT_BRANCH }}
-      # https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
-      - name: branch define
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: |
+          testScript:
+            - 'test.py'
+  
+  second:
+    name: Passed the first
+    needs: [changes]
+    if: ${{ needs.changes.outputs.testScript == 'true' }}
+    runs-on: macos-latest
+    steps:
+      - name: confirmation
         run: |
-          echo "CURRENT_BRANCH=$([ ${{ github.ref }} == 'refs/heads/main' ] && { echo "main"; } || { echo "test"; })" >> $GITHUB_ENV
-      
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        with:
-            ref: ${{ env.CURRENT_BRANCH }}
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo ${{ env.CURRENT_BRANCH }}
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          keys=''
-          if [ ${{ env.CURRENT_BRANCH }} == 'develop' ]
-          then
-            keys='hahahaha'
-          else
-            keys='okokokokok','nonononono'
-          fi
-          echo $keys
+          echo "success"
