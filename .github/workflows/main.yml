@@ -30,11 +30,20 @@ jobs:
               - 'test.py'
   
   second:
-    name: Passed the first
+    name: run test script
     needs: [changes]
     if: ${{ needs.changes.outputs.script == 'true' }}
     runs-on: macos-latest
     steps:
-      - name: confirmation
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+            python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+            architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+            
+      - name: install dependencies
         run: |
-          echo "success"
+          pip install firebase-admin
+          
+      - run: |
+          python ./test.py
