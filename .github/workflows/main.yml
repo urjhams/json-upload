@@ -41,6 +41,10 @@ jobs:
         with:
           ref: main
           
+      - name: break step
+        run: |
+          exit 1
+          
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
