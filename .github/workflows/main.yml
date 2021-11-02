@@ -14,7 +14,7 @@ jobs:
     name: Filter change check job
     runs-on: macos-latest
     outputs:
-      iconfont: ${{ steps.filter.outputs.testScript }}
+      script: ${{ steps.filter.outputs.testScript }}
     steps:
       # check out the repository
       - name: check out
@@ -32,7 +32,7 @@ jobs:
   second:
     name: Passed the first
     needs: [changes]
-    if: ${{ needs.changes.outputs.testScript == 'true' }}
+    if: ${{ needs.changes.outputs.script == 'true' }}
     runs-on: macos-latest
     steps:
       - name: confirmation
