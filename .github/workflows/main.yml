@@ -9,7 +9,7 @@ on:
 #     branches: [ main ]
   push:
     tags:
-      - '*'
+      - '*.*.*'
     
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -43,16 +43,23 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
-          
-      - name: break step
-        run: |
-          exit 1
-          
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-            python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-            architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
-          
+
+      - name: get tag
+        run: echo "TAG_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
       - run: |
-          python ./test.py
+          echo $TAG_VERSION
+          echo ${{ env.TAG_VERSION }}
+          
+      # - name: break step
+      #   run: |
+      #     exit 1
+          
+      # - name: Setup Python
+      #   uses: actions/setup-python@v2
+      #   with:
+      #       python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+      #       architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+          
+      # - run: |
+      #     python ./test.py
